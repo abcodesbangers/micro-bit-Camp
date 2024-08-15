@@ -1,8 +1,18 @@
 num = 0
 def button_b_press():
     global num
-    num += 1
+    num -= 1
+    basic.show_number(num)
 input.on_button_pressed(Button.B, button_b_press)
 def button_a_press():
+    global num
+    num += 1
     basic.show_number(num)
 input.on_button_pressed(Button.A, button_a_press)
+
+def both_button_press():
+    basic.clear_screen()
+    global num
+    num = 0
+    basic.show_string("cleared")
+input.on_button_pressed(Button.AB, both_button_press)

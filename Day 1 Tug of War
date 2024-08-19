@@ -1,0 +1,26 @@
+num_one = 0
+num_two = 0
+def on_forever_one():
+    global num_one
+    global num_two
+    if input.button_is_pressed(Button.A):
+        global num_one
+        num_one += 1
+        basic.show_string(num_one)
+    elif input.button_is_pressed(Button.B):
+        global num_two
+        num_two += 1
+        
+    if num_one > num_two:
+        basic.show_arrow(6,10)
+    elif num_one < num_two:
+        basic.show_arrow(2,10)
+
+    if num_two > 20:
+        basic.show_string("B Wins!")
+    elif num_one > 20:
+        basic.show_string("A Wins!")
+    
+basic.forever(on_forever_one)
+
+    

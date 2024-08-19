@@ -1,0 +1,33 @@
+def on_forever():
+    a_pressed = input.button_is_pressed(Button.A)
+    b_pressed = input.button_is_pressed(Button.B) #add more buttons after getting just button A to work
+    ab_pressed = input.button_is_pressed(Button.AB)
+
+    if a_pressed:
+        basic.show_number(2) #start with showing numbers
+        #basic.show_string("A") #change to strings
+        #basic.show_icon(IconNames.HAPPY) #finally, change to icons
+        # pause(200) #add pauses and clear screen to flash icons
+        # basic.clear_screen()
+       
+    if b_pressed:
+        basic.show_number(3) 
+        #basic.show_string("B")
+        #basic.show_icon(IconNames.ANGRY)
+        # pause(200)
+        # basic.clear_screen()
+     
+    if ab_pressed:
+        basic.show_number(4)
+        #basic.show_string("AB")
+        #basic.show_icon(IconNames.CONFUSED)
+        # pause(200)
+        # basic.clear_screen()
+       
+    else:
+        basic.show_number(1)
+        #basic.show_string("X")
+        #basic.show_icon(IconNames.ASLEEP)
+        
+
+basic.forever(on_forever)

@@ -1,18 +1,53 @@
-num = 0
-def button_b_press():
-    global num
-    num -= 1
-    basic.show_number(num)
-input.on_button_pressed(Button.B, button_b_press)
-def button_a_press():
-    global num
-    num += 1
-    basic.show_number(num)
-input.on_button_pressed(Button.A, button_a_press)
+um = 0
+def on_forever():
 
-def both_button_press():
-    basic.clear_screen()
+    if input.button_is_pressed(Button.B):
+        global num
+        num -= 1
+        basic.show_number(num)
+    if input.button_is_pressed(Button.A):
+        global num
+        num += 1
+        basic.show_number(num)
+    if input.button_is_pressed(Button.AB):
+        basic.clear_screen()
+        global num
+        num = 0
+        basic.show_string("CLEAR")
+basic.forever(on_forever)
+
+#**********AFTER EXPAND TO:
+num = 0
+def on_forever():
     global num
-    num = 0
-    basic.show_string("cleared")
-input.on_button_pressed(Button.AB, both_button_press)
+    if input.button_is_pressed(Button.B):
+        global num
+        num -= 1
+        print_face()
+    if input.button_is_pressed(Button.A):
+        global num
+        num += 1
+        print_face()
+    if input.button_is_pressed(Button.AB):
+        basic.clear_screen()
+        global num
+        num = 0
+        basic.show_string("CLEAR")
+    
+basic.forever(on_forever)
+
+def print_face():
+    global num
+    if num < -5:
+        basic.show_icon(IconNames.ANGRY) 
+    elif num > 5:
+        basic.show_icon(IconNames.HAPPY)
+    elif num == 0:
+        basic.show_icon(IconNames.ASLEEP)
+    elif num > 0:
+        basic.show_icon(IconNames.CONFUSED)
+    elif num < 0:
+        basic.show_icon(IconNames.SAD)
+    pause(500)
+    basic.clear_screen()
+    

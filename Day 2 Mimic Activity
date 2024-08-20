@@ -1,0 +1,37 @@
+def on_forever():
+    sound_level = input.sound_level()
+    sound_threshold = 200
+    if sound_level > sound_threshold:
+        basic.show_icon(IconNames.SQUARE)
+        pause(200)
+        basic.clear_screen()
+basic.forever(on_forever)
+
+#Expand To:
+
+def on_forever():
+    sound_level = input.sound_level()
+    sound_threshold_high = 150
+    sound_threshold_low = 80
+    if sound_level > sound_threshold_high:
+        led.plot(2,2)
+        pause(100)
+        basic.clear_screen()
+        basic.show_icon(IconNames.SMALL_SQUARE)
+        pause(100)
+        basic.clear_screen()
+        basic.show_icon(IconNames.SQUARE)
+        pause(100)
+        basic.clear_screen()
+    elif sound_level > sound_threshold_low:
+        led.plot(2,2)
+        pause(100)
+        basic.clear_screen()
+        basic.show_icon(IconNames.SMALL_SQUARE)
+        pause(100)
+        basic.clear_screen()      
+    else:
+        led.plot(2,2)
+        pause(100)
+        basic.clear_screen()
+basic.forever(on_forever)

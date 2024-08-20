@@ -1,0 +1,20 @@
+def on_forever():
+    if input.button_is_pressed(Button.A):
+        left_lights()
+    if input.button_is_pressed(Button.B):
+        right_lights()
+basic.forever(on_forever)
+
+def left_lights():
+    for i in range(0,5):
+        led.plot(0, i)
+        led.plot(1, i)  
+    pause(200)
+    basic.clear_screen()
+
+def right_lights():
+    for x in range(3,5):
+        for i in range(0,5):
+            led.plot(x,i)
+    pause(200)
+    basic.clear_screen()

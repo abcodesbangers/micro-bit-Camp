@@ -1,0 +1,40 @@
+radio.set_group(1)
+def on_forever():
+    a_pressed = input.button_is_pressed(Button.A)
+    b_pressed = input.button_is_pressed(Button.B)
+    if a_pressed:
+        radio.send_number(0)
+    elif b_pressed:
+        radio.send_number(1)
+basic.forever(on_forever)
+
+def received(num):
+    if num == 0:
+        show_dot()
+        pause(200)
+        basic.clear_screen()
+    else:
+        show_dash()
+        pause(200)
+        basic.clear_screen()
+radio.on_received_number(received)
+
+def show_dot():
+    led.plot(1,1)
+    led.plot(1,2)
+    led.plot(1,3)
+    led.plot(2,1)
+    led.plot(2,2)
+    led.plot(2,3)
+    led.plot(3,1)
+    led.plot(3,2)
+    led.plot(3,3)
+
+def show_dash():
+    led.plot(0,2)
+    led.plot(1,2)
+    led.plot(2,2)
+    led.plot(3,2)
+    led.plot(4,2)
+
+    

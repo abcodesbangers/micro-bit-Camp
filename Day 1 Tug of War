@@ -6,7 +6,6 @@ def on_forever_one():
     if input.button_is_pressed(Button.A):
         global num_one
         num_one += 1
-        basic.show_string(num_one)
     elif input.button_is_pressed(Button.B):
         global num_two
         num_two += 1
@@ -16,11 +15,9 @@ def on_forever_one():
     elif num_one < num_two:
         basic.show_arrow(2,10)
 
-    if num_two > 20:
-        basic.show_string("B Wins!")
-    elif num_one > 20:
-        basic.show_string("A Wins!")
+    if num_two > 30:
+        basic.show_string("B WINS!")
+    elif num_one > 30:
+        basic.show_string("A WINS!")
     
 basic.forever(on_forever_one)
-
-    

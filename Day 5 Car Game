@@ -1,0 +1,34 @@
+bird = game.create_sprite(2, 4)
+bird.set(LedSpriteProperty.BLINK, 300)
+obstacles: List[game.LedSprite] = []
+gap = 0
+
+def on_forever():
+    global gap
+    global bird
+
+    while len(obstacles) > 0 and obstacles[0].get(LedSpriteProperty.Y) == 4:
+        obstacles.remove_at(0).delete()
+    for obstacle in obstacles:
+        obstacle.change(LedSpriteProperty.Y, 1)
+    basic.pause(1000)
+    if gap % 3 == 0:
+        emptyObstaclex = randint(0, 4)
+        for i in range(5):
+            if i != emptyObstaclex:
+                wall = game.create_sprite(i, 0)
+                obstacles.append(wall)
+    gap += 1
+    for obstacle2 in obstacles:
+        if obstacle2.get(LedSpriteProperty.X) == bird.get(LedSpriteProperty.X) and obstacle2.get(LedSpriteProperty.Y) == bird.get(LedSpriteProperty.Y):
+            game.game_over
+basic.forever(on_forever)
+
+
+def on_button_pressed_a():
+    bird.change(LedSpriteProperty.X, -1)
+input.on_button_pressed(Button.A, on_button_pressed_a)
+
+def on_button_pressed_b():
+    bird.change(LedSpriteProperty.X, 1)
+input.on_button_pressed(Button.B, on_button_pressed_b)

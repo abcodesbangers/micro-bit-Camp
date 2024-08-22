@@ -1,21 +1,19 @@
 num_one = 0
-num_two = 0
-def on_forever_one():
+num_two = 0 #global vars for each players score
+def on_forever_one(): 
     global num_one
     global num_two
-    if input.button_is_pressed(Button.A):
-        global num_one
+    if input.button_is_pressed(Button.A): #if a button is pressed, add one to the corresponding player's score
         num_one += 1
     elif input.button_is_pressed(Button.B):
-        global num_two
         num_two += 1
         
-    if num_one > num_two:
-        basic.show_arrow(6,10)
+    if num_one > num_two: #display an arrow pointing to whichever player has a greater score
+        basic.show_arrow(6,10) #show_arrow 6,10 points left
     elif num_one < num_two:
-        basic.show_arrow(2,10)
+        basic.show_arrow(2,10) #2,10 point right
 
-    if num_two > 30:
+    if num_two > 30: #when either player reaches 30, they win. Print who wins
         basic.show_string("B WINS!")
     elif num_one > 30:
         basic.show_string("A WINS!")

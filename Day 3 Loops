@@ -1,20 +1,33 @@
+
+#familiarize students with for loops
 def on_forever():
-    if input.button_is_pressed(Button.A):
+    if input.button_is_pressed(Button.A): #if a button is pressed flash the left lights with the created function. If b is pressed call right lights
         left_lights()
     if input.button_is_pressed(Button.B):
         right_lights()
 basic.forever(on_forever)
 
-def left_lights():
-    for i in range(0,5):
+def left_lights(): #Way one to flash lights using led plot. plot(x,y). Teach both for loops and while loops. Try to have students do the right_lights() on their own
+    # for i in range(0,5):
+    #     led.plot(0, i)
+    #     led.plot(1, i)
+    # pause(200)
+    # basic.clear_screen()
+
+    i = 0
+    while i < 5:
         led.plot(0, i)
-        led.plot(1, i)  
+        led.plot(1,i)
+        i += 1
     pause(200)
     basic.clear_screen()
 
-def right_lights():
-    for x in range(3,5):
-        for i in range(0,5):
-            led.plot(x,i)
+def right_lights(): #nested for loop included for advanced/ fast learning students
+    for i in range (0,5):
+        led.plot(3, i)
+        led.plot(4, i)
+    # for x in range(3,5):
+    #     for i in range(0,5):
+    #         led.plot(x,i)
     pause(200)
     basic.clear_screen()

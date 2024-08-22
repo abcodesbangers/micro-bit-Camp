@@ -1,25 +1,26 @@
-radio.set_group(1)
+radio.set_group(1) #set the radio group to 1. Have students pair up and make sure they are both on the same radio group.
 def on_forever():
-    a_pressed = input.button_is_pressed(Button.A)
+    a_pressed = input.button_is_pressed(Button.A) #button press variables 
     b_pressed = input.button_is_pressed(Button.B)
-    if a_pressed:
+    if a_pressed: #when a is pressed, send 0. if b is pressed, send 1. 0 will be dots and 1 will be dashes
         radio.send_number(0)
     elif b_pressed:
         radio.send_number(1)
 basic.forever(on_forever)
 
 def received(num):
-    if num == 0:
+    if num == 0: #if 0 is received, call show_dot() function which will display a dot
         show_dot()
         pause(200)
         basic.clear_screen()
-    else:
+    else: #else(if 1 received) call show_dash() which displays a dash
         show_dash()
         pause(200)
         basic.clear_screen()
-radio.on_received_number(received)
 
-def show_dot():
+radio.on_received_number(received) #when the radio receives a number, call the received function
+
+def show_dot(): #plots the leds for the dot
     led.plot(1,1)
     led.plot(1,2)
     led.plot(1,3)
@@ -30,7 +31,7 @@ def show_dot():
     led.plot(3,2)
     led.plot(3,3)
 
-def show_dash():
+def show_dash(): #plots the leds for the dash
     led.plot(0,2)
     led.plot(1,2)
     led.plot(2,2)

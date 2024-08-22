@@ -1,7 +1,9 @@
-def on_forever():
-    sound_level = input.sound_level()
-    sound_threshold = 200
-    if sound_level > sound_threshold:
+
+#Start by simply introducing sound level functions and display sound at a certain threshold
+def on_forever(): #forever
+    sound_level = input.sound_level() #variable for the sound level input
+    sound_threshold = 200 #threshold for the sound
+    if sound_level > sound_threshold: #if its greater than the threshold(Loud Sound), print a square icon
         basic.show_icon(IconNames.SQUARE)
         pause(200)
         basic.clear_screen()
@@ -11,9 +13,9 @@ basic.forever(on_forever)
 
 def on_forever():
     sound_level = input.sound_level()
-    sound_threshold_high = 150
-    sound_threshold_low = 80
-    if sound_level > sound_threshold_high:
+    sound_threshold_high = 150 
+    sound_threshold_low = 80 #make new threshold for quieter sounds
+    if sound_level > sound_threshold_high: #if greater than the higher sound threshold: Flash small dot then small square then big square
         led.plot(2,2)
         pause(100)
         basic.clear_screen()
@@ -23,14 +25,14 @@ def on_forever():
         basic.show_icon(IconNames.SQUARE)
         pause(100)
         basic.clear_screen()
-    elif sound_level > sound_threshold_low:
+    elif sound_level > sound_threshold_low: #if greater than only the lower threshold, flash only the dot and square
         led.plot(2,2)
         pause(100)
         basic.clear_screen()
         basic.show_icon(IconNames.SMALL_SQUARE)
         pause(100)
         basic.clear_screen()      
-    else:
+    else: #if quiet, flash only the small dot
         led.plot(2,2)
         pause(100)
         basic.clear_screen()

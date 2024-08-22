@@ -1,34 +1,34 @@
-bird = game.create_sprite(2, 4)
-bird.set(LedSpriteProperty.BLINK, 300)
-obstacles: List[game.LedSprite] = []
-gap = 0
+car = game.create_sprite(2, 4) #create the car sprite. Create the sprite bottom, middle
+car.set(LedSpriteProperty.BLINK, 100) #make the car blink every 100 miliseconds
+obstacles: List[game.LedSprite] = [] #create a list for the obstacles of type game.LedSprite
+gap = 0 #gap variable to be used later
 
 def on_forever():
-    global gap
-    global bird
+    global gap #call the global vars
+    global car
 
-    while len(obstacles) > 0 and obstacles[0].get(LedSpriteProperty.Y) == 4:
+    while len(obstacles) > 0 and obstacles[0].get(LedSpriteProperty.Y) == 4: #while there are still obstacles in the list and the obstacle sprites are in the last row(Led.SpriteProperty.Y), delete them from the list so they disapear.
         obstacles.remove_at(0).delete()
-    for obstacle in obstacles:
+    for obstacle in obstacles: #while running, for the obstacles in obstacles, change the Y value by positive one to shift it down.
         obstacle.change(LedSpriteProperty.Y, 1)
     basic.pause(1000)
-    if gap % 3 == 0:
-        emptyObstaclex = randint(0, 4)
-        for i in range(5):
+    if gap % 3 == 0: #gap mod 3 == 0 creates gaps in between the obstacles. After every 3 movements, another will appear and move.
+        emptyObstaclex = randint(0, 4) #when it is time for a new obstacle, get a random int from 0 to 4
+        for i in range(5): #in the for loop, if emptyobstacle != i we create a sprite wall with by making individual sprites with the same Y coordinate value, but not for the random number. This creates walls with a singular hole gap.
             if i != emptyObstaclex:
                 wall = game.create_sprite(i, 0)
                 obstacles.append(wall)
-    gap += 1
-    for obstacle2 in obstacles:
-        if obstacle2.get(LedSpriteProperty.X) == bird.get(LedSpriteProperty.X) and obstacle2.get(LedSpriteProperty.Y) == bird.get(LedSpriteProperty.Y):
-            game.game_over
+    gap += 1 #add one to gap to start incremnation for next wall
+    for obstacle2 in obstacles: #for the obstacles in obstacles
+        if obstacle2.get(LedSpriteProperty.X) == car.get(LedSpriteProperty.X) and obstacle2.get(LedSpriteProperty.Y) == car.get(LedSpriteProperty.Y): #if the X and Y values from the wall sprites match the X and Y value from the car sprite then they hit the wall and lose.
+            game.game_over #ends the game
 basic.forever(on_forever)
 
 
-def on_button_pressed_a():
-    bird.change(LedSpriteProperty.X, -1)
+def on_button_pressed_a(): #changes the X position by -1. Moves left
+    car.change(LedSpriteProperty.X, -1)
 input.on_button_pressed(Button.A, on_button_pressed_a)
 
-def on_button_pressed_b():
-    bird.change(LedSpriteProperty.X, 1)
+def on_button_pressed_b(): #changes the X position by -1. Moves left
+    car.change(LedSpriteProperty.X, 1)
 input.on_button_pressed(Button.B, on_button_pressed_b)

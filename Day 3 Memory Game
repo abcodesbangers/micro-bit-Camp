@@ -1,33 +1,33 @@
-sequence = [0]
+sequence = [0] #initialize global vars for main sequence, player submitted sequence, and alive status
 player_sequence = [0]
 alive = True
 def on_forever():
-    start = input.button_is_pressed(Button.AB)  
-    if start:
-        global sequence
-        global alive
-        sequence = [0]
+global sequence
+    global alive
+    global sequence
+    start = input.button_is_pressed(Button.AB)  #AB is start button
+    if start: #when started    
+        sequence = [0] #reset sequence and alive status from previous attempt
         alive = True
-        basic.show_string("321GO!")
-        while alive:           
+        basic.show_string("321GO!") #Print countdown to show that the game started
+        while alive:            #while the player is alive
             pause(200)
-            basic.clear_screen()
-            pause(200)
-            global sequence
-            rand = randint(0,1)
-            sequence.append(rand)
-            flash_sequence()
+            basic.clear_screen() #clear the screen
+            pause(200)    
+            rand = randint(0,1) #give rand a random int value either 0 or 1. 0 for left lights, 1 for right lights 
+            sequence.append(rand) #add that random value to the sequence. 
+            flash_sequence() #call flash_sequewnce which will flash the random numbers in the array that were appended.
             pause(100)
-            get_player_sequence()
+            get_player_sequence() #get the player sequence to comapre to the actual sequence
 basic.forever(on_forever)
 
 def get_player_sequence():
-    global sequence
+    global sequence #call globals
     global player_sequence
     global alive
-    player_sequence = [0]
+    player_sequence = [0] #make sure player_sequence is empty
 
-    basic.show_number(3)
+    basic.show_number(3) #countdown
     pause(100)
     basic.show_number(2)
     pause(100)
@@ -35,34 +35,34 @@ def get_player_sequence():
     pause(100)
     basic.clear_screen()
     pause(100)
-    while (len(player_sequence)) < len(sequence):
+    while (len(player_sequence)) < len(sequence): #while the length of player sequence in less than the length of sequence to make sure that the player submits the correct number of inputs
         global sequence
         global player_sequence
-        if input.button_is_pressed(Button.A):
+        if input.button_is_pressed(Button.A): #when A is pressed, call left_lights() then add a 0 to the player sequence
             left_lights()
             player_sequence.append(0)
-        elif input.button_is_pressed(Button.B):
+        elif input.button_is_pressed(Button.B): #when B is pressed, call Right_lights() then add a 1 to the player sequence
             right_lights()
             player_sequence.append(1)
-    for i in range (1, len(sequence) + 1):      
-        if sequence[i] != player_sequence[i]:
-            alive = False
-    if alive == False:
+    for i in range (1, len(sequence) + 1):      #To determine whether the sequence was correct, run for loop from 1 to the length of sequence plus 1. Start at 1 because we initialized the array starting with a 0
+        if sequence[i] != player_sequence[i]: #if the the value at i for sequence does not match its corresponding value in player_sequence, then the player has input something wrong and they lose
+            alive = False # change alive status to false because they lost
+    if alive == False: #if they lose print the following:
         basic.show_string("YOU LOSE")
         basic.show_string("Score:")
-        basic.show_number(len(sequence) - 1)
+        basic.show_number(len(sequence) - 1) #the score is the length of sequence - 1.
         pause(500)
         basic.clear_screen()
         
-def left_lights():
-    for i in range(0,5):
+def left_lights(): #same code as the previous activity
+    for i in range(0,5): 
         led.plot(0, i)
         led.plot(1, i)
     pause(200)
     basic.clear_screen()
     pause(400)
 
-def right_lights():
+def right_lights(): #same code as the previous activity
     for x in range(3,5):
         for i in range(0,5):
             led.plot(x,i)
@@ -70,9 +70,9 @@ def right_lights():
     basic.clear_screen()
     pause(400)
 
-def flash_sequence():
+def flash_sequence(): #flashes the corresponding lights to the values in the list
     global sequence
-    for i in range(1, len(sequence) + 1):
+    for i in range(1, len(sequence) + 1): #for all the values in sequence, if the value in sequence is 0 then flash left if 1 then do right lights
         if sequence[i] == 0:
             left_lights()
         elif sequence[i] == 1:

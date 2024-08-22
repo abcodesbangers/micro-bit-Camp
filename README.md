@@ -31,7 +31,7 @@ Day 3 Loops:
 Day 3 Memory Game:
   with the added on code, try playing the game. Make sure to wait for the countdowns to end before pressing buttons. 
 
-Day 4 Crystal B all, H or T, and Dice Roll
+Day 4 Crystal B all, H or T, and Dice Roll:
   Click the different button and shake the microbit and see the random outputs
 
 Day 5 Car Game:

@@ -1,19 +1,19 @@
 def on_forever():
-    if input.button_is_pressed(Button.A):
+    if input.button_is_pressed(Button.A): #if A is pressed, call the heads or tails function game
         basic.clear_screen()
-        input.on_gesture(Gesture.SHAKE, on_gesture_shake_heads_tails)
-    if input.button_is_pressed(Button.B):
+        input.on_gesture(Gesture.SHAKE, on_gesture_shake_heads_tails) #on the gesture shake input, call the on_gesture_shake_heads_tails() function which will run the code to for the functioning crystal ball, same for the other button presses
+    if input.button_is_pressed(Button.B): #if B is pressed, call the crystal ball function game
         basic.clear_screen()
         input.on_gesture(Gesture.SHAKE, on_gesture_shake_crystal_ball)
-    if input.button_is_pressed(Button.AB):
+    if input.button_is_pressed(Button.AB): #if AB is pressed, call the dice roll  function game
         basic.clear_screen()
         input.on_gesture(Gesture.SHAKE, on_gesture_shake_dice_roll)
     
 basic.forever(on_forever)
 
-def on_gesture_shake_crystal_ball():
-    num = randint(0,3)
-    if num == 0:
+def on_gesture_shake_crystal_ball(): #Crystal Ball
+    num = randint(0,3) #random number from 0 - 3
+    if num == 0: #if 0 print yes, if 1 print no, if 2 print maybe, if 3 print idk
         basic.show_string("YES")
         pause(200)
         basic.clear_screen()
@@ -31,7 +31,7 @@ def on_gesture_shake_crystal_ball():
         basic.clear_screen()
 
 def on_gesture_shake_heads_tails():
-    num = randint(0,1)
+    num = randint(0,1) #rand int 0 or 1, if 0 print heads, if 1 print tails
     if num == 0:
         basic.show_string("H")
         pause(200)
@@ -42,6 +42,7 @@ def on_gesture_shake_heads_tails():
         basic.clear_screen()
 
 def on_gesture_shake_dice_roll():
+    #rand int 1-6 for the sides of the dice. Print the random int
     num = randint(1,6)
     basic.show_number(num)
 

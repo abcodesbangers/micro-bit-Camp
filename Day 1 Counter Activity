@@ -1,15 +1,16 @@
+#Global Variable num. global because it is used in multiple functions as the code is expanded
+#*Start with the code below, expand afterwards. Get students familiar with variables and math operators
 num = 0
-def on_forever():
-
-    if input.button_is_pressed(Button.B):
+def on_forever(): #run code forever
+    if input.button_is_pressed(Button.B): #if B is pressed, decrease num and show the number
         global num
         num -= 1
         basic.show_number(num)
-    if input.button_is_pressed(Button.A):
+    if input.button_is_pressed(Button.A): #if A is pressed, decrease num and show the number
         global num
         num += 1
         basic.show_number(num)
-    if input.button_is_pressed(Button.AB):
+    if input.button_is_pressed(Button.AB): #if AB is pressed, reset num and print clear
         basic.clear_screen()
         global num
         num = 0
@@ -17,10 +18,11 @@ def on_forever():
 basic.forever(on_forever)
 
 #**********AFTER EXPAND TO:
+#Code mostly similar to above but adding another function. 
 num = 0
 def on_forever():
     global num
-    if input.button_is_pressed(Button.B):
+    if input.button_is_pressed(Button.B): #Same as before, but call prin_face() in each. 
         global num
         num -= 1
         print_face()
@@ -35,7 +37,7 @@ def on_forever():
         basic.show_string("CLEAR")
     
 basic.forever(on_forever)
-
+#Prints a face icon depending on the value of num. Gets students familiar with if, elif, operators, and functions.
 def print_face():
     global num
     if num < -5:
